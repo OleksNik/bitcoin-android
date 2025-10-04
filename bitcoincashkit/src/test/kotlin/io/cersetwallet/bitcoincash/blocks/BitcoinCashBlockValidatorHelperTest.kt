@@ -2,7 +2,7 @@ package io.cersetwallet.bitcoincash.blocks
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
-import io.horizontalsystems.Fixtures
+import io.cersetwallet.Fixtures
 import io.cersetwallet.bitcoincore.core.IStorage
 import io.cersetwallet.bitcoincore.models.Block
 import io.cersetwallet.bitcoincore.storage.BlockHeader
