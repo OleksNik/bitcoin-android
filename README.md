@@ -418,6 +418,6 @@ All features of the library are used in example project. It can be referred as a
 
 [Contributing](CONTRIBUTING.md)
 
-## License
+## License ,,
 
 The `bitcoin-kit-android` is open source and available under the terms of the [MIT License](https://github.com/horizontalsystems/bitcoin-kit-android/blob/master/LICENSE)
