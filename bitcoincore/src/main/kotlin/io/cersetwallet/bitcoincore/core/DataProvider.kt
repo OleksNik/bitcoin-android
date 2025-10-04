@@ -18,7 +18,6 @@ import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
-import kotlin.compareTo
 
 class DataProvider(
     private val storage: IStorage,
@@ -55,13 +54,13 @@ class DataProvider(
         }
 
         balanceSubjectDisposable = balanceUpdateSubject.debounce(500, TimeUnit.MILLISECONDS)
-                .subscribe {
-                    balance = unspentOutputProvider.getBalance()
-                }
+            .subscribe {
+                balance = unspentOutputProvider.getBalance()
+            }
     }
 
     override fun onBlockInsert(block: Block) {
-        if (block.height compareTo lastBlockInfo?.height ?: 0) {
+        if (block.height > lastBlockInfo?.height ?: 0) {
             val blockInfo = blockInfo(block)
 
             lastBlockInfo = blockInfo
@@ -72,8 +71,8 @@ class DataProvider(
 
     override fun onTransactionsUpdate(inserted: List<Transaction>, updated: List<Transaction>, block: Block?) {
         listener?.onTransactionsUpdate(
-                storage.getFullTransactionInfo(inserted.map { TransactionWithBlock(it, block) }).map { transactionInfoConverter.transactionInfo(it) },
-                storage.getFullTransactionInfo(updated.map { TransactionWithBlock(it, block) }).map { transactionInfoConverter.transactionInfo(it) }
+            storage.getFullTransactionInfo(inserted.map { TransactionWithBlock(it, block) }).map { transactionInfoConverter.transactionInfo(it) },
+            storage.getFullTransactionInfo(updated.map { TransactionWithBlock(it, block) }).map { transactionInfoConverter.transactionInfo(it) }
         )
 
         balanceUpdateSubject.onNext(true)
@@ -99,7 +98,7 @@ class DataProvider(
     fun getRawTransaction(transactionHash: String): String? {
         val hashByteArray = transactionHash.hexToByteArray().reversedArray()
         return storage.getFullTransactionInfo(hashByteArray)?.rawTransaction
-                ?: storage.getInvalidTransaction(hashByteArray)?.rawTransaction
+            ?: storage.getInvalidTransaction(hashByteArray)?.rawTransaction
     }
 
     fun getTransaction(transactionHash: String): TransactionInfo? {
@@ -119,7 +118,7 @@ class DataProvider(
     private fun blockInfo(block: Block) = BlockInfo(
         block.headerHash.toReversedHex(),
         block.height,
-        block.timestamp
-    )
+        block.timestamp)
 
 }
+
