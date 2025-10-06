@@ -412,7 +412,7 @@ All features of the library are used in example project. It can be referred as a
 * [Example App](https://github.com/horizontalsystems/bitcoin-kit-android/tree/master/app)
 
 ## Dependencies
-* [HDWalletKit]((https://github.com/OleksNik/hd-wallet-android)) - HD Wallet related features, mnemonic phrase 
+* [HDWalletKit](https://github.com/OleksNik/hd-wallet-android) - HD Wallet related features, mnemonic phrase 
 
 ## Contributing
 
